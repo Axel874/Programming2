@@ -6,39 +6,39 @@
 #include <iostream>
 #include <cassert>
 #include <sstream>
-//#include "Health.h"
+#include "Health.h"
 //#include "Container.h"
 //#include "Vector2f.h"
 
 // Test function declarations
-void TestHealthClass( );
-void TestContainerClass( );
+void TestHealthClass();
+void TestContainerClass();
 //void PrintContainer( const Container &container );
 
 // Your code that uses the operators
-void UseHealthOperators( );
-void UseContainerOperators( );
+void UseHealthOperators();
+void UseContainerOperators();
 
 
-int main( )
+int main()
 {
 	srand(int(time(nullptr)));
-	
 
-	
-	//TestHealthClass( );
-	//UseHealthOperators();
 
-	//TestContainerClass( );
-	//UseContainerOperators( );
+
+	TestHealthClass();
+	UseHealthOperators();
+
+	TestContainerClass();
+	UseContainerOperators();
 
 	std::cout << "Push ENTER to quit\n";
-	std::cin.get( );
+	std::cin.get();
 	return 0;
 }
 
 // Functions definitions
-void UseHealthOperators( )
+void UseHealthOperators()
 {
 	// similar operations should be possible with the health class
 	int nr1{ 2 };
@@ -49,128 +49,128 @@ void UseHealthOperators( )
 	nr3 += nr2 += nr1;
 	nr3 += nr2 += nr1;
 }
-void UseContainerOperators( )
+void UseContainerOperators()
 {
 }
 
 void TestHealthClass()
 {
-	//// Initialize
-	//int healthValue{ 0 };
-	//Health healthObject{ healthValue };
-	//int randValue{};
-	//int testCntr{};
+	// Initialize
+	int healthValue{ 0 };
+	Health healthObject{ healthValue };
+	int randValue{};
+	int testCntr{};
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Health += int \n";
-	//// Positive integer
-	//randValue = rand() % 100 + 1;
-	//healthObject += randValue;
-	//healthValue += randValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//// Negative integer
-	//randValue = -(rand() % 10 + 1);
-	//healthObject += randValue;
-	//healthValue += randValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//// Test result of +=
-	//assert((healthObject += randValue).GetValue() == (healthValue += randValue));
-	//// Checking return is Health&
-	//int randValue1 = rand() % 5 + 1; //[1,5]
-	//int randValue2 = rand() % 5 + 6; // [6,10]
-	//(healthObject += randValue1) += randValue2;
-	//(healthValue += randValue1) += randValue2;
-	//assert(healthObject.GetValue() == healthValue);
-	//std::cout << "ok\n";
-
-
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Health -= int \n";
-	//// Positive integer
-	//randValue = rand() % 100 + 1;
-	//healthObject -= randValue;
-	//healthValue -= randValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//// Negative integer
-	//randValue = -(rand() % 10 + 1);
-	//healthObject -= randValue;
-	//healthValue -= randValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//// Test result of -=
-	//assert((healthObject -= randValue).GetValue() == (healthValue -= randValue));
-	//// Checking return is Health&
-	//(healthObject -= randValue1) -= randValue2;
-	//(healthValue -= randValue1) -= randValue2;
-	//assert(healthObject.GetValue() == healthValue);
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Health += int \n";
+	// Positive integer
+	randValue = rand() % 100 + 1;
+	healthObject += randValue;
+	healthValue += randValue;
+	assert(healthObject.GetValue() == healthValue);
+	// Negative integer
+	randValue = -(rand() % 10 + 1);
+	healthObject += randValue;
+	healthValue += randValue;
+	assert(healthObject.GetValue() == healthValue);
+	// Test result of +=
+	assert((healthObject += randValue).GetValue() == (healthValue += randValue));
+	// Checking return is Health&
+	int randValue1 = rand() % 5 + 1; //[1,5]
+	int randValue2 = rand() % 5 + 6; // [6,10]
+	(healthObject += randValue1) += randValue2;
+	(healthValue += randValue1) += randValue2;
+	assert(healthObject.GetValue() == healthValue);
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: int + Health\n";
-	//// Positive integer
-	//randValue = rand() % 100 + 1;
-	//randValue + healthObject;
-	//assert(healthObject.GetValue() == healthValue);
-	//healthObject = randValue + healthObject;
-	//healthValue = randValue + healthValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//// Negative integer
-	//randValue = -(rand() % 10 + 1);
-	//healthObject = randValue + healthObject;
-	//healthValue = randValue + healthValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Health -= int \n";
+	// Positive integer
+	randValue = rand() % 100 + 1;
+	healthObject -= randValue;
+	healthValue -= randValue;
+	assert(healthObject.GetValue() == healthValue);
+	// Negative integer
+	randValue = -(rand() % 10 + 1);
+	healthObject -= randValue;
+	healthValue -= randValue;
+	assert(healthObject.GetValue() == healthValue);
+	// Test result of -=
+	assert((healthObject -= randValue).GetValue() == (healthValue -= randValue));
+	// Checking return is Health&
+	(healthObject -= randValue1) -= randValue2;
+	(healthValue -= randValue1) -= randValue2;
+	assert(healthObject.GetValue() == healthValue);
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: int - Health\n";
-	//// Positive integer
-	//randValue = rand() % 100 + 1;
-	//randValue - healthObject;
-	//assert(healthObject.GetValue() == healthValue);
-	//healthObject = randValue - healthObject;
-	//healthValue = randValue - healthValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//// Negative integer
-	//randValue = -(rand() % 10 + 1);
-	//healthObject = randValue - healthObject;
-	//healthValue = randValue - healthValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: int + Health\n";
+	// Positive integer
+	randValue = rand() % 100 + 1;
+	randValue + healthObject;
+	assert(healthObject.GetValue() == healthValue);
+	healthObject = randValue + healthObject;
+	healthValue = randValue + healthValue;
+	assert(healthObject.GetValue() == healthValue);
+	// Negative integer
+	randValue = -(rand() % 10 + 1);
+	healthObject = randValue + healthObject;
+	healthValue = randValue + healthValue;
+	assert(healthObject.GetValue() == healthValue);
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Health + int \n";
-	//// Positive integer
-	//randValue = rand() % 100 + 1;
-	//healthObject + randValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//healthObject = healthObject + randValue;
-	//healthValue = healthValue + randValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//// Negative integer
-	//randValue = -(rand() % 10 + 1);
-	//healthObject = healthObject + randValue;
-	//healthValue = healthValue + randValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: int - Health\n";
+	// Positive integer
+	randValue = rand() % 100 + 1;
+	randValue - healthObject;
+	assert(healthObject.GetValue() == healthValue);
+	healthObject = randValue - healthObject;
+	healthValue = randValue - healthValue;
+	assert(healthObject.GetValue() == healthValue);
+	// Negative integer
+	randValue = -(rand() % 10 + 1);
+	healthObject = randValue - healthObject;
+	healthValue = randValue - healthValue;
+	assert(healthObject.GetValue() == healthValue);
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Health - int \n";
-	//// Positive integer
-	//randValue = rand() % 100 + 1;
-	//healthObject - randValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//healthObject = healthObject - randValue;
-	//healthValue = healthValue - randValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//// Negative integer
-	//randValue = -(rand() % 10 + 1);
-	//healthObject = healthObject - randValue;
-	//healthValue = healthValue - randValue;
-	//assert(healthObject.GetValue() == healthValue);
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Health + int \n";
+	// Positive integer
+	randValue = rand() % 100 + 1;
+	healthObject + randValue;
+	assert(healthObject.GetValue() == healthValue);
+	healthObject = healthObject + randValue;
+	healthValue = healthValue + randValue;
+	assert(healthObject.GetValue() == healthValue);
+	// Negative integer
+	randValue = -(rand() % 10 + 1);
+	healthObject = healthObject + randValue;
+	healthValue = healthValue + randValue;
+	assert(healthObject.GetValue() == healthValue);
+	std::cout << "ok\n";
+
+
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". test of: health - int \n";
+	// positive integer
+	randValue = rand() % 100 + 1;
+	healthObject - randValue;
+	assert(healthObject.GetValue() == healthValue);
+	healthObject = healthObject - randValue;
+	healthValue = healthValue - randValue;
+	assert(healthObject.GetValue() == healthValue);
+	// negative integer
+	randValue = -(rand() % 10 + 1);
+	healthObject = healthObject- randValue;
+	healthValue= healthValue- randValue;
+	assert(healthObject.GetValue() == healthValue);
+	std::cout << "ok\n";
 }
 void TestContainerClass()
 {
