@@ -8,34 +8,31 @@ Container::Container( int capacity )
 	, m_pElement{ new int[capacity] }
 {
 }
-
 Container::~Container( ) 
 { 
 	delete[] m_pElement; 
 }
 
+int& Container::operator[](const int index) const { return m_pElement[index]; }
+
 int Container::Size( ) const
 { 
 	return m_Size; 
 }
-
 int Container::Capacity( ) const
 {
 	return m_Capacity;
 }
-
 int Container::Get( int index ) const
 {
 	assert( index >= 0 && index < m_Size );
 	return m_pElement[index];
 }
-
 void Container::Set( int index, int value )
 {
 	assert( index >= 0 && index < m_Size );
 	m_pElement[index] = value;
 }
-
 void Container::PushBack( int value )
 {
 	if ( !( m_Size < m_Capacity ) )
@@ -45,7 +42,6 @@ void Container::PushBack( int value )
 	m_pElement[m_Size] = value;
 	++m_Size;
 }
-
 void Container::Reserve( int newCapacity )
 {
 	if ( newCapacity <= m_Capacity )

@@ -9,6 +9,7 @@ public:
 	Container& operator=( const Container& other ) = delete;
 	Container( Container&& other )noexcept = delete;           
 	Container& operator=( Container&& other )noexcept = delete;
+	int& operator[](const int index) const;
 
 	int Size( ) const;
 	int Capacity( ) const;
