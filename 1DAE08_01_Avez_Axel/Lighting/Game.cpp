@@ -19,7 +19,7 @@ Game::~Game( )
 void Game::Initialize( )
 {
 	TestVector2fStruct();
-	m_SunOrbit = Circlef(Point2f(m_Window.width / 2.0f, 0), m_Window.width / 2.0f);
+	m_SunOrbit = Circlef(Point2f(m_Window.width / 2.0f, 0), m_Window.width / 3.0f);
 	m_SunSpeed = 1.0f;
 
 	m_SurfaceLeft = new Point2f{ m_Window.width / 10.0f, 0 };
@@ -61,26 +61,45 @@ void Game::Draw( ) const
 	utils::ClearBackground(0,0,0);
 	DrawSurface();
 	DrawSurfaceNormal();
-	Vector2f sunPosition{ m_SunOrbit.center };
-	sunPosition.x += sinf(m_SunAngle) * m_SunOrbit.radius;
-	sunPosition.y += cosf(m_SunAngle) * m_SunOrbit.radius;
-	utils::DrawEllipse(sunPosition.ToPoint2f(), 10, 10);
+	DrawSun();
+	utils::DrawLine(GetSunPosition(), GetPlatformMidpoint().ToPoint2f());
+	
+}
+void Game::DrawSun() const
+{
+	utils::SetColor(1, 1, 0);
+	utils::FillEllipse(GetSunPosition(), 10, 10);
 }
 void Game::DrawSurfaceNormal() const
 {
-	Vector2f platformMiddle = Vector2f(*m_SurfaceRight) - Vector2f(*m_SurfaceLeft);
-	platformMiddle /= 2.0f;
-	platformMiddle += Vector2f(*m_SurfaceLeft);
-	Vector2f n = platformMiddle + (Vector2f(*m_SurfaceNormal) * 50);
+	Vector2f m = GetPlatformMidpoint();
+	Vector2f n = m + (Vector2f(*m_SurfaceNormal) * 50);
 	utils::SetColor(0, 1, 1);
-	utils::DrawLine(platformMiddle.x, platformMiddle.y, n.x, n.y, 5.0f);
+	utils::DrawLine(m.x, m.y, n.x, n.y, 5.0f);
 }
 void Game::DrawSurface() const
 {
-	utils::SetColor(1, 1, 0);
+	//light vector
+	Vector2f l = (Vector2f(GetSunPosition()) - GetPlatformMidpoint());
+	float dI = l.Normalized().DotProduct(*m_SurfaceNormal);
+	Vector2f r = GetPlatformMidpoint() + ( 2 * (*m_SurfaceNormal*(l.DotProduct(*m_SurfaceNormal))))-l;
+	utils::SetColor(1, 0, 0);
+	utils::DrawLine(GetPlatformMidpoint().ToPoint2f(), r.ToPoint2f());
+	utils::SetColor(dI*1, dI*1, dI*0);
 	utils::DrawLine(*m_SurfaceLeft, *m_SurfaceRight, 5.0f);
 }
-
+Vector2f Game::GetPlatformMidpoint() const {
+	Vector2f platformMiddle = Vector2f(*m_SurfaceRight) - Vector2f(*m_SurfaceLeft);
+	platformMiddle /= 2.0f;
+	platformMiddle += Vector2f(*m_SurfaceLeft);
+	return platformMiddle;
+}
+Point2f Game::GetSunPosition() const {
+	Point2f sunPosition{ m_SunOrbit.center };
+	sunPosition.x += sinf(m_SunAngle) * m_SunOrbit.radius;
+	sunPosition.y += cosf(m_SunAngle) * m_SunOrbit.radius;
+	return sunPosition;
+}
 void Game::ProcessKeyDownEvent( const SDL_KeyboardEvent & e )
 {
 }

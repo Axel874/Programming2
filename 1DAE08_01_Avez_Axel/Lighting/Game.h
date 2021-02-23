@@ -11,22 +11,24 @@ public:
 	Game& operator=(Game&& other) = delete;
 	~Game();
 
-	void Update( float elapsedSec );
+	void Update(float elapsedSec);
 	void ProcessKeyboardState(float elapsedSec);
 	void MovePlatform(float elapsedSec);
 	void UpdateSurfaceNormal();
-	void Draw( ) const;
+	void Draw() const;
+
+	void DrawSun() const;
 
 	void DrawSurfaceNormal() const;
 
 	void DrawSurface() const;
 
 	// Event handling
-	void ProcessKeyDownEvent( const SDL_KeyboardEvent& e );
-	void ProcessKeyUpEvent( const SDL_KeyboardEvent& e );
-	void ProcessMouseMotionEvent( const SDL_MouseMotionEvent& e );
-	void ProcessMouseDownEvent( const SDL_MouseButtonEvent& e );
-	void ProcessMouseUpEvent( const SDL_MouseButtonEvent& e );
+	void ProcessKeyDownEvent(const SDL_KeyboardEvent& e);
+	void ProcessKeyUpEvent(const SDL_KeyboardEvent& e);
+	void ProcessMouseMotionEvent(const SDL_MouseMotionEvent& e);
+	void ProcessMouseDownEvent(const SDL_MouseButtonEvent& e);
+	void ProcessMouseUpEvent(const SDL_MouseButtonEvent& e);
 
 private:
 	// DATA MEMBERS
@@ -38,10 +40,12 @@ private:
 	Circlef m_SunOrbit;
 	float m_SunAngle = 0;
 	float m_SunSpeed;
-	
+	Vector2f* m_LightVector;
 
 	// FUNCTIONS
-	void Initialize( );
-	void Cleanup( );
+	void Initialize();
+	void Cleanup();
 	void TestVector2fStruct();
+	Vector2f GetPlatformMidpoint() const;
+	Point2f GetSunPosition() const;
 };
