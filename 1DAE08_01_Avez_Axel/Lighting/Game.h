@@ -1,6 +1,6 @@
 #pragma once
-
-
+struct Vector2f;
+struct Point2f;
 class Game
 {
 public:
@@ -14,6 +14,8 @@ public:
 	void Update( float elapsedSec );
 	void Draw( ) const;
 
+	void DrawSurface() const;
+
 	// Event handling
 	void ProcessKeyDownEvent( const SDL_KeyboardEvent& e );
 	void ProcessKeyUpEvent( const SDL_KeyboardEvent& e );
@@ -24,6 +26,11 @@ public:
 private:
 	// DATA MEMBERS
 	const Window m_Window;
+	Point2f* m_SurfaceRight;
+	Point2f* m_SurfaceLeft;
+	Vector2f* m_SurfaceNormal;
+	float m_MovementSpeed;
+	
 
 	// FUNCTIONS
 	void Initialize( );

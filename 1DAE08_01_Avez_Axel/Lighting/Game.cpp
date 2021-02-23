@@ -11,7 +11,6 @@ Game::Game( const Window& window )
 {	 
 	Initialize( );
 }
-
 Game::~Game( )
 {
 	Cleanup( );
@@ -20,27 +19,41 @@ Game::~Game( )
 void Game::Initialize( )
 {
 	TestVector2fStruct();
+	m_SurfaceLeft = new Point2f{ m_Window.width / 10.0f, 0 };
+	m_SurfaceRight = new Point2f{ m_Window.width - m_SurfaceLeft->x, 0 };
+	m_MovementSpeed = 300.0f;
 }
-
 void Game::Cleanup( )
 {
-
+	delete m_SurfaceLeft;
+	delete m_SurfaceRight;
+	delete m_SurfaceNormal;
 }
 
 void Game::Update( float elapsedSec )
 {
-
+	ProcessKeyboardState(elapsedSec);
 }
-
+void Game::ProcessKeyboardState(float elapsedSec)
+{
+	const Uint8* state = SDL_GetKeyboardState(NULL);
+	if (state[SDL_SCANCODE_UP])m_SurfaceLeft->y += elapsedSec * m_MovementSpeed;
+	if (state[SDL_SCANCODE_DOWN])m_SurfaceLeft->y -= elapsedSec * m_MovementSpeed;
+}
 void Game::Draw( ) const
 {
-	utils::ClearBackground( );
+	utils::ClearBackground(0,0,0);
+	DrawSurface();
+}
+void Game::DrawSurface() const
+{
+	utils::SetColor(1, 1, 0);
+	utils::DrawLine(*m_SurfaceLeft, *m_SurfaceRight, 5.0f);
 }
 
 void Game::ProcessKeyDownEvent( const SDL_KeyboardEvent & e )
 {
 }
-
 void Game::ProcessKeyUpEvent( const SDL_KeyboardEvent& e )
 {
 	switch (e.keysym.sym)
@@ -57,18 +70,15 @@ void Game::ProcessKeyUpEvent( const SDL_KeyboardEvent& e )
 		break;
 	}
 }
-
 void Game::ProcessMouseMotionEvent( const SDL_MouseMotionEvent& e )
 {
 	//std::cout << "  [" << e.x << ", " << e.y << "]\n";
 	//Point2f mousePos{ float( e.x ), float( g_WindowHeight - e.y ) };
 }
-
 void Game::ProcessMouseDownEvent( const SDL_MouseButtonEvent& e )
 {
 
 }
-
 void Game::ProcessMouseUpEvent( const SDL_MouseButtonEvent& e )
 {
 	//std::cout << "  [" << e.x << ", " << e.y << "]\n";
@@ -88,8 +98,6 @@ void Game::ProcessMouseUpEvent( const SDL_MouseButtonEvent& e )
 		break;
 	}
 }
-
-
 
 void Game::TestVector2fStruct()
 {
