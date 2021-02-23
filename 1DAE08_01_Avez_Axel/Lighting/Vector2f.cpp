@@ -122,3 +122,6 @@ Vector2f& operator*(const float lhs, Vector2f rhs) { return rhs *= lhs; }
 
 bool operator==(const Vector2f& rhs, const Vector2f lhs) { return rhs.x == lhs.x && rhs.y == lhs.y; }
 bool operator!=(const Vector2f& rhs, const Vector2f lhs) { return !(rhs == lhs); }
+
+std::ostream& operator<<(std::ostream& rhs, const Vector2f lhs) { rhs << lhs.ToString(); return rhs; }
+

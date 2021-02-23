@@ -273,14 +273,14 @@ void Game::TestVector2fStruct()
 	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: std::ostream << Vector2f\n";
-	//std::stringstream testStream;
-	//testStream << v1; // The operation
-	//std::string v1String = v1.ToString();
-	//std::string opString{ testStream.str() };
-	//std::string::size_type foundPos = opString.find(v1String);
-	//assert(foundPos != std::string::npos);
-	//std::cout << v1 << std::endl; // The operation in cascade
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: std::ostream << Vector2f\n";
+	std::stringstream testStream;
+	testStream << v1; // The operation
+	std::string v1String = v1.ToString();
+	std::string opString{ testStream.str() };
+	std::string::size_type foundPos = opString.find(v1String);
+	assert(foundPos != std::string::npos);
+	std::cout << v1 << std::endl; // The operation in cascade
+	std::cout << "ok\n";
 }

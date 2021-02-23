@@ -100,3 +100,5 @@ Vector2f& operator*(const float rhs, Vector2f lhs);
 
 bool operator==(const Vector2f& rhs, const Vector2f lhs);
 bool operator!=(const Vector2f& rhs, const Vector2f lhs);
+
+std::ostream& operator<<(std::ostream& rhs, const Vector2f lhs);
