@@ -12,6 +12,9 @@ public:
 	~Game();
 
 	void Update( float elapsedSec );
+	void ProcessKeyboardState(float elapsedSec);
+	void MovePlatform(float elapsedSec);
+	void UpdateSurfaceNormal();
 	void Draw( ) const;
 
 	void DrawSurface() const;

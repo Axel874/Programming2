@@ -21,6 +21,8 @@ void Game::Initialize( )
 	TestVector2fStruct();
 	m_SurfaceLeft = new Point2f{ m_Window.width / 10.0f, 0 };
 	m_SurfaceRight = new Point2f{ m_Window.width - m_SurfaceLeft->x, 0 };
+	m_SurfaceNormal = new Vector2f();
+	UpdateSurfaceNormal();
 	m_MovementSpeed = 300.0f;
 }
 void Game::Cleanup( )
@@ -37,13 +39,32 @@ void Game::Update( float elapsedSec )
 void Game::ProcessKeyboardState(float elapsedSec)
 {
 	const Uint8* state = SDL_GetKeyboardState(NULL);
-	if (state[SDL_SCANCODE_UP])m_SurfaceLeft->y += elapsedSec * m_MovementSpeed;
-	if (state[SDL_SCANCODE_DOWN])m_SurfaceLeft->y -= elapsedSec * m_MovementSpeed;
+	if (state[SDL_SCANCODE_UP])MovePlatform(elapsedSec * m_MovementSpeed);
+	if (state[SDL_SCANCODE_DOWN])MovePlatform(-elapsedSec * m_MovementSpeed);
+}
+void Game::MovePlatform(float movement)
+{
+	m_SurfaceLeft->y += movement;
+	UpdateSurfaceNormal();
+}
+void Game::UpdateSurfaceNormal()
+{
+	*m_SurfaceNormal = Vector2f(*m_SurfaceLeft, *m_SurfaceRight).Orthogonal().Normalized();
 }
 void Game::Draw( ) const
 {
 	utils::ClearBackground(0,0,0);
 	DrawSurface();
+	DrawSurfaceNormal();
+}
+void Game::DrawSurfaceNormal() const
+{
+	Vector2f platformMiddle = Vector2f(*m_SurfaceRight) - Vector2f(*m_SurfaceLeft);
+	platformMiddle /= 2.0f;
+	platformMiddle += Vector2f(*m_SurfaceLeft);
+	Vector2f n = platformMiddle + (Vector2f(*m_SurfaceNormal) * 50);
+	utils::SetColor(0, 1, 1);
+	utils::DrawLine(platformMiddle.x, platformMiddle.y, n.x, n.y, 5.0f);
 }
 void Game::DrawSurface() const
 {
