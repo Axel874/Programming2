@@ -17,6 +17,8 @@ public:
 	void UpdateSurfaceNormal();
 	void Draw( ) const;
 
+	void DrawSurfaceNormal() const;
+
 	void DrawSurface() const;
 
 	// Event handling
@@ -33,6 +35,9 @@ private:
 	Point2f* m_SurfaceLeft;
 	Vector2f* m_SurfaceNormal;
 	float m_MovementSpeed;
+	Circlef m_SunOrbit;
+	float m_SunAngle = 0;
+	float m_SunSpeed;
 	
 
 	// FUNCTIONS

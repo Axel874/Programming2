@@ -19,10 +19,14 @@ Game::~Game( )
 void Game::Initialize( )
 {
 	TestVector2fStruct();
+	m_SunOrbit = Circlef(Point2f(m_Window.width / 2.0f, 0), m_Window.width / 2.0f);
+	m_SunSpeed = 1.0f;
+
 	m_SurfaceLeft = new Point2f{ m_Window.width / 10.0f, 0 };
 	m_SurfaceRight = new Point2f{ m_Window.width - m_SurfaceLeft->x, 0 };
 	m_SurfaceNormal = new Vector2f();
 	UpdateSurfaceNormal();
+	
 	m_MovementSpeed = 300.0f;
 }
 void Game::Cleanup( )
@@ -35,6 +39,7 @@ void Game::Cleanup( )
 void Game::Update( float elapsedSec )
 {
 	ProcessKeyboardState(elapsedSec);
+	m_SunAngle = float(fmod((m_SunAngle + m_SunSpeed * elapsedSec), 360));
 }
 void Game::ProcessKeyboardState(float elapsedSec)
 {
@@ -56,6 +61,10 @@ void Game::Draw( ) const
 	utils::ClearBackground(0,0,0);
 	DrawSurface();
 	DrawSurfaceNormal();
+	Vector2f sunPosition{ m_SunOrbit.center };
+	sunPosition.x += sinf(m_SunAngle) * m_SunOrbit.radius;
+	sunPosition.y += cosf(m_SunAngle) * m_SunOrbit.radius;
+	utils::DrawEllipse(sunPosition.ToPoint2f(), 10, 10);
 }
 void Game::DrawSurfaceNormal() const
 {
