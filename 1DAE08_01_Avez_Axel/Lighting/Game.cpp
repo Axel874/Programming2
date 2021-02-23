@@ -126,151 +126,151 @@ void Game::TestVector2fStruct()
 	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f *= float\n";
-	//factor1 = rand() % 10 + 1.f;
-	//v1Copy.Set(v1.x, v1.y);
-	//v1Res.Set(v1Copy.x *= factor1, v1Copy.y *= factor1);
-	//v1 *= factor1; // The operation
-	//assert(v1.Equals(v1Res));
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f *= float\n";
+	factor1 = rand() % 10 + 1.f;
+	v1Copy.Set(v1.x, v1.y);
+	v1Res.Set(v1Copy.x *= factor1, v1Copy.y *= factor1);
+	v1 *= factor1; // The operation
+	assert(v1.Equals(v1Res));
 
-	//factor1 = rand() % 5 + 1.f;
-	//factor2 = rand() % 5 + 6.f;
-	//v1Copy.Set(v1.x, v1.y);
-	//v1Res.Set((v1Copy.x *= factor1) *= factor2, (v1Copy.y *= factor1) *= factor2);
-	//(v1 *= factor1) *= factor2; // The operation, a reference should be returned
-	//assert(v1.Equals(v1Res));
-	//std::cout << "ok\n";
-
-
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f /= float\n";
-	//factor1 = float(rand() % 10 + 1);
-	//v1Copy.Set(v1.x, v1.y);
-	//v1Res.Set(v1Copy.x /= factor1, v1Copy.y /= factor1);
-	//v1 /= factor1; // The operation
-	//assert(v1.Equals(v1Res));
-	//v1Copy.Set(v1.x, v1.y);
-	//v1Res.Set((v1Copy.x /= factor1) /= factor2, (v1Copy.y /= factor1) /= factor2);
-	//(v1 /= factor1) /= factor2; // A reference should be returned
-	//assert(v1.Equals(v1Res));
-	//std::cout << "ok\n";
+	factor1 = rand() % 5 + 1.f;
+	factor2 = rand() % 5 + 6.f;
+	v1Copy.Set(v1.x, v1.y);
+	v1Res.Set((v1Copy.x *= factor1) *= factor2, (v1Copy.y *= factor1) *= factor2);
+	(v1 *= factor1) *= factor2; // The operation, a reference should be returned
+	assert(v1.Equals(v1Res));
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f = float * Vector2f\n";
-	//factor1 = rand() % 10 + 1.f;
-	//v1.Set(5.0f, 3.0f);
-	//v1Copy.Set(v1.x, v1.y);
-	//expectedRes.Set(factor1 * v1Copy.x, factor1 * v1Copy.y);
-	//opRes = factor1 * v1; // The operation
-	//assert(opRes.Equals(expectedRes));
-	//assert(v1.Equals(v1Copy));
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f /= float\n";
+	factor1 = float(rand() % 10 + 1);
+	v1Copy.Set(v1.x, v1.y);
+	v1Res.Set(v1Copy.x /= factor1, v1Copy.y /= factor1);
+	v1 /= factor1; // The operation
+	assert(v1.Equals(v1Res));
+	v1Copy.Set(v1.x, v1.y);
+	v1Res.Set((v1Copy.x /= factor1) /= factor2, (v1Copy.y /= factor1) /= factor2);
+	(v1 /= factor1) /= factor2; // A reference should be returned
+	assert(v1.Equals(v1Res));
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f = Vector2f  * float\n";
-	//factor1 = float(rand() % 10 + 1);
-	//v1Copy.Set(v1.x, v1.y);
-	//expectedRes.Set(v1Copy.x * factor1, v1Copy.y  * factor1);
-	//opRes = v1 * factor1; // The operation
-	//assert(opRes.Equals(expectedRes));
-	//assert(v1.Equals(v1Copy));
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f = float * Vector2f\n";
+	factor1 = rand() % 10 + 1.f;
+	v1.Set(5.0f, 3.0f);
+	v1Copy.Set(v1.x, v1.y);
+	expectedRes.Set(factor1 * v1Copy.x, factor1 * v1Copy.y);
+	opRes = factor1 * v1; // The operation
+	assert(opRes.Equals(expectedRes));
+	assert(v1.Equals(v1Copy));
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f = Vector2f  / float\n";
-	//factor1 = float(rand() % 10 + 1);
-	//v1Copy.Set(v1.x, v1.y);
-	//expectedRes.Set(v1Copy.x / factor1, v1Copy.y / factor1);
-	//opRes = v1 / factor1; // The operation
-	//assert(opRes.Equals(expectedRes));
-	//assert(v1.Equals(v1Copy));
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f = Vector2f  * float\n";
+	factor1 = float(rand() % 10 + 1);
+	v1Copy.Set(v1.x, v1.y);
+	expectedRes.Set(v1Copy.x * factor1, v1Copy.y  * factor1);
+	opRes = v1 * factor1; // The operation
+	assert(opRes.Equals(expectedRes));
+	assert(v1.Equals(v1Copy));
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f += Vector2f\n";
-	//v1Res.Set(v1.x, v1.y);
-	//v2Res.Set(v2.x, v2.y);
-	//v1Res.x += v2Res.x;
-	//v1Res.y += v2Res.y;
-	//v1 += v2; // The operation
-	//assert(v1.Equals(v1Res));
-	//assert(v2.Equals(v2Res));
-	//v1Res.x += v2Res.x += v2Res.x;
-	//v1Res.y += v2Res.y += v2Res.y;
-	//v1 += v2 += v2; // The cascading operation
-	//assert(v1.Equals(v1Res));
-	//assert(v2.Equals(v2Res));
-	//(v1Res.x += v2Res.x) += v2Res.x;
-	//(v1Res.y += v2Res.y) += v2Res.y;
-	//(v1 += v2) += v2; // A reference is returned
-	//assert(v1.Equals(v1Res));
-	//assert(v2.Equals(v2Res));
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f = Vector2f  / float\n";
+	factor1 = float(rand() % 10 + 1);
+	v1Copy.Set(v1.x, v1.y);
+	expectedRes.Set(v1Copy.x / factor1, v1Copy.y / factor1);
+	opRes = v1 / factor1; // The operation
+	assert(opRes.Equals(expectedRes));
+	assert(v1.Equals(v1Copy));
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f -= Vector2f\n";
-	//v1Res.Set(v1.x, v1.y);
-	//v2Res.Set(v2.x, v2.y);
-	//v1Res.x -= v2Res.x;
-	//v1Res.y -= v2Res.y;
-	//v1 -= v2; // The operation
-	//assert(v1.Equals(v1Res));
-	//assert(v2.Equals(v2Res));
-	//v1Res.x -= v2Res.x -= v2Res.x;
-	//v1Res.y -= v2Res.y -= v2Res.y;
-	//v1 -= v2 -= v2; // The cascading operation
-	//assert(v1.Equals(v1Res));
-	//assert(v2.Equals(v2Res));
-	//(v1Res.x -= v2Res.x) -= v2Res.x;
-	//(v1Res.y -= v2Res.y) -= v2Res.y;
-	//(v1 -= v2) -= v2; // A reference is returned
-	//assert(v1.Equals(v1Res));
-	//assert(v2.Equals(v2Res));
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f += Vector2f\n";
+	v1Res.Set(v1.x, v1.y);
+	v2Res.Set(v2.x, v2.y);
+	v1Res.x += v2Res.x;
+	v1Res.y += v2Res.y;
+	v1 += v2; // The operation
+	assert(v1.Equals(v1Res));
+	assert(v2.Equals(v2Res));
+	v1Res.x += v2Res.x += v2Res.x;
+	v1Res.y += v2Res.y += v2Res.y;
+	v1 += v2 += v2; // The cascading operation
+	assert(v1.Equals(v1Res));
+	assert(v2.Equals(v2Res));
+	(v1Res.x += v2Res.x) += v2Res.x;
+	(v1Res.y += v2Res.y) += v2Res.y;
+	(v1 += v2) += v2; // A reference is returned
+	assert(v1.Equals(v1Res));
+	assert(v2.Equals(v2Res));
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f = Vector2f + Vector2f\n";
-	//expectedRes.Set(v1.x + v2.x, v1.y + v2.y);
-	//v1Copy.Set(v1.x, v1.y);
-	//v2Copy.Set(v2.x, v2.y);
-	//opRes = v1 + v2; // The operation
-	//assert(opRes.Equals(expectedRes));
-	//assert(v1.Equals(v1Copy));
-	//assert(v2.Equals(v2Copy));
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f -= Vector2f\n";
+	v1Res.Set(v1.x, v1.y);
+	v2Res.Set(v2.x, v2.y);
+	v1Res.x -= v2Res.x;
+	v1Res.y -= v2Res.y;
+	v1 -= v2; // The operation
+	assert(v1.Equals(v1Res));
+	assert(v2.Equals(v2Res));
+	v1Res.x -= v2Res.x -= v2Res.x;
+	v1Res.y -= v2Res.y -= v2Res.y;
+	v1 -= v2 -= v2; // The cascading operation
+	assert(v1.Equals(v1Res));
+	assert(v2.Equals(v2Res));
+	(v1Res.x -= v2Res.x) -= v2Res.x;
+	(v1Res.y -= v2Res.y) -= v2Res.y;
+	(v1 -= v2) -= v2; // A reference is returned
+	assert(v1.Equals(v1Res));
+	assert(v2.Equals(v2Res));
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f = Vector2f - Vector2f\n";
-	//expectedRes.Set(v1.x - v2.x, v1.y - v2.y);
-	//v1Copy.Set(v1.x, v1.y);
-	//v2Copy.Set(v2.x, v2.y);
-	//opRes = v1 - v2; // The operation
-	//assert(opRes.Equals(expectedRes));
-	//assert(v1.Equals(v1Copy));
-	//assert(v2.Equals(v2Copy));
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f = Vector2f + Vector2f\n";
+	expectedRes.Set(v1.x + v2.x, v1.y + v2.y);
+	v1Copy.Set(v1.x, v1.y);
+	v2Copy.Set(v2.x, v2.y);
+	opRes = v1 + v2; // The operation
+	assert(opRes.Equals(expectedRes));
+	assert(v1.Equals(v1Copy));
+	assert(v2.Equals(v2Copy));
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f == Vector2f\n";
-	//assert(v1 == v1);
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f = Vector2f - Vector2f\n";
+	expectedRes.Set(v1.x - v2.x, v1.y - v2.y);
+	v1Copy.Set(v1.x, v1.y);
+	v2Copy.Set(v2.x, v2.y);
+	opRes = v1 - v2; // The operation
+	assert(opRes.Equals(expectedRes));
+	assert(v1.Equals(v1Copy));
+	assert(v2.Equals(v2Copy));
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f != Vector2f\n";
-	//v1Copy.Set(v1.x, v1.y);
-	//v1 *= 2.0f;
-	//assert(v1Copy != v1);
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f == Vector2f\n";
+	assert(v1 == v1);
+	std::cout << "ok\n";
+
+
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f != Vector2f\n";
+	v1Copy.Set(v1.x, v1.y);
+	v1 *= 2.0f;
+	assert(v1Copy != v1);
+	std::cout << "ok\n";
 
 
 	//++testCntr;

@@ -100,3 +100,25 @@ void Vector2f::Set(float newX, float newY)
 // -------------------------
 Vector2f operator-(const Vector2f& lhs) { return Vector2f{ -lhs.x, -lhs.y }; }
 Vector2f operator+(const Vector2f& lhs) { return lhs; }
+
+Vector2f& Vector2f::operator+=(const float rhs) { this->x += rhs; this->y += rhs; return *this; }
+Vector2f& Vector2f::operator+=(const Vector2f& rhs) { this->x += rhs.x; this->y += rhs.y; return *this; }
+Vector2f& Vector2f::operator-=(const float rhs) { *this += -rhs; return *this; }
+Vector2f& Vector2f::operator-=(const Vector2f& rhs) { *this += -rhs; return *this; }
+Vector2f& Vector2f::operator/=(const float rhs) { *this *= 1 / rhs; return *this; }
+Vector2f& Vector2f::operator/=(const Vector2f& rhs) { this->x /= rhs.x; this->y /= rhs.y; return *this; }
+Vector2f& Vector2f::operator*=(const float rhs) { this->x *= rhs; this->y *= rhs; return *this; }
+Vector2f& Vector2f::operator*=(const Vector2f& rhs) { this->x *= rhs.x; this->y *= rhs.y; return *this; }
+
+Vector2f& operator+(Vector2f lhs, const Vector2f& rhs) { return lhs += rhs; }
+Vector2f& operator+(Vector2f lhs, const float rhs) { return lhs += rhs; }
+Vector2f& operator-(Vector2f lhs, const Vector2f& rhs) { return lhs -= rhs; }
+Vector2f& operator-(Vector2f lhs, const float rhs) { return lhs -= rhs; }
+Vector2f& operator/(Vector2f lhs, const Vector2f& rhs) { return lhs /= rhs; }
+Vector2f& operator/(Vector2f lhs, const float rhs) { return lhs /= rhs; }
+Vector2f& operator*(Vector2f lhs, const Vector2f& rhs) { return lhs *= rhs; }
+Vector2f& operator*(Vector2f lhs, const float rhs) { return lhs *= rhs; }
+Vector2f& operator*(const float lhs, Vector2f rhs) { return rhs *= lhs; }
+
+bool operator==(const Vector2f& rhs, const Vector2f lhs) { return rhs.x == lhs.x && rhs.y == lhs.y; }
+bool operator!=(const Vector2f& rhs, const Vector2f lhs) { return !(rhs == lhs); }

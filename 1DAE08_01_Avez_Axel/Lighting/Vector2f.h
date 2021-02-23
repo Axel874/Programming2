@@ -17,7 +17,14 @@ struct Vector2f final
 	// -------------------------
 	// Member operators
 	// -------------------------
-
+	Vector2f& operator+=(const float rhs);
+	Vector2f& operator+=(const Vector2f& rhs);
+	Vector2f& operator-=(const float rhs);
+	Vector2f& operator-=(const Vector2f& rhs);
+	Vector2f& operator/=(const float rhs);
+	Vector2f& operator/=(const Vector2f& rhs);
+	Vector2f& operator*=(const float rhs);
+	Vector2f& operator*=(const Vector2f& rhs);
 
 
 	// -------------------------
@@ -81,3 +88,15 @@ struct Vector2f final
 Vector2f operator-(const Vector2f& lhs);
 Vector2f operator+(const Vector2f& lhs);
 
+Vector2f& operator+(Vector2f lhs, const Vector2f& rhs);
+Vector2f& operator+(Vector2f lhs, const float rhs);
+Vector2f& operator-(Vector2f lhs, const Vector2f& rhs);
+Vector2f& operator-(Vector2f lhs, const float rhs);
+Vector2f& operator/(Vector2f lhs, const Vector2f& rhs);
+Vector2f& operator/(Vector2f lhs, const float rhs);
+Vector2f& operator*(Vector2f lhs, const Vector2f& rhs);
+Vector2f& operator*(Vector2f lhs, const float rhs);
+Vector2f& operator*(const float rhs, Vector2f lhs);
+
+bool operator==(const Vector2f& rhs, const Vector2f lhs);
+bool operator!=(const Vector2f& rhs, const Vector2f lhs);
