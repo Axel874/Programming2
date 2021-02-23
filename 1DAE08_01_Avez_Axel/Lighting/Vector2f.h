@@ -18,6 +18,8 @@ struct Vector2f final
 	// Member operators
 	// -------------------------
 
+
+
 	// -------------------------
 	// Methods
 	// -------------------------
@@ -76,5 +78,6 @@ struct Vector2f final
 // -------------------------
 // Non-member operators
 // -------------------------
-
+Vector2f operator-(const Vector2f& lhs);
+Vector2f operator+(const Vector2f& lhs);
 

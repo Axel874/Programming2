@@ -106,24 +106,24 @@ void Game::TestVector2fStruct()
 	float factor2{};
 	int testCntr{};
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f = -Vector2f\n";
-	//v1Copy.Set(v1.x, v1.y);
-	//v1Res.Set(-v1.x, -v1.y);
-	//opRes = -v1; // The operation
-	//assert(opRes.Equals(v1Res));
-	//assert(v1.Equals(v1Copy));
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f = -Vector2f\n";
+	v1Copy.Set(v1.x, v1.y);
+	v1Res.Set(-v1.x, -v1.y);
+	opRes = -v1; // The operation
+	assert(opRes.Equals(v1Res));
+	assert(v1.Equals(v1Copy));
+	std::cout << "ok\n";
 
 
-	//++testCntr;
-	//std::cout << "\n==> " << testCntr << ". Test of: Vector2f = +Vector2f\n";
-	//v1Copy.Set(v1.x, v1.y);
-	//v1Res.Set(v1.x, v1.y);
-	//opRes = +v1; // The operation
-	//assert(opRes.Equals(v1Res));
-	//assert(v1.Equals(v1Copy));
-	//std::cout << "ok\n";
+	++testCntr;
+	std::cout << "\n==> " << testCntr << ". Test of: Vector2f = +Vector2f\n";
+	v1Copy.Set(v1.x, v1.y);
+	v1Res.Set(v1.x, v1.y);
+	opRes = +v1; // The operation
+	assert(opRes.Equals(v1Res));
+	assert(v1.Equals(v1Copy));
+	std::cout << "ok\n";
 
 
 	//++testCntr;
