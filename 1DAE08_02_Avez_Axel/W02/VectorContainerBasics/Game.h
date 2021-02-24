@@ -20,12 +20,22 @@ public:
 	void ProcessMouseDownEvent( const SDL_MouseButtonEvent& e );
 	void ProcessMouseUpEvent( const SDL_MouseButtonEvent& e );
 
+
+
 private:
 	// DATA MEMBERS
 	const Window m_Window;
+	std::vector<int> m_Numbers;
 
 	// FUNCTIONS
 	void Initialize( );
 	void Cleanup( );
+
 	void ClearBackground( ) const;
+	void RemoveElement();
+	void AddElement();
+	void PrintElements();
+	void PrintLn(const std::string& str);
+	void Print(const int& i);
+	void IncrementElements(const int& increment);
 };
