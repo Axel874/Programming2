@@ -29,5 +29,5 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           Directories=$(find ./1DAE08_* -type d -maxdepth 0)
-          echo Directories
+          echo $Directories
           
