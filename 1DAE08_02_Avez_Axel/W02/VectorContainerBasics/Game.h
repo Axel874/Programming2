@@ -50,4 +50,6 @@ private:
 	void PrintLn(const std::string& str);
 	void Print(const int& i);
 	void IncrementElements(const int& increment);
+	void ShuffelCards(const int shuffleCount);
+	void ShuffleCard();
 };

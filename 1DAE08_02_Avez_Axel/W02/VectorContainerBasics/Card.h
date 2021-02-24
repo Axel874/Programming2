@@ -13,12 +13,9 @@ public:
 	};
 
 	explicit Card(Suit suit, int rank);
-	void RetrieveDimensions();
 	explicit Card(int suit, int rank);
-	void LoadTexture();
 
 	~Card();
-	void DeleteTexture();
 
 	void Draw(const Rectf& destRect) const;
 
@@ -32,4 +29,7 @@ private:
 	const int m_Rank;
 	Vector2f m_Dimensions;
 	std::string GetImagePath() const;
+	void RetrieveDimensions();
+	void LoadTexture();
+	void DeleteTexture();
 };

@@ -56,7 +56,6 @@ void Game::Draw() const
 	ClearBackground();
 	DrawCards();
 }
-
 void Game::DrawCards() const
 {
 	for (unsigned int row = 0; row < 4; row++) {
@@ -97,11 +96,24 @@ void Game::ProcessKeyDownEvent(const SDL_KeyboardEvent& e)
 		IncrementElements(-1);
 		PrintElements();
 	}
+	else if (key == SDLK_s){
+		ShuffelCards(50);
+	}
 
 }
-void Game::IncrementElements(const int& increment)
+void Game::ShuffelCards(const int shuffleCount)
 {
-	for (int& i : m_Numbers) { i += increment; }
+	for (int i = 0; i < shuffleCount; i++) {
+		ShuffleCard();
+	}
+}
+void Game::ShuffleCard()
+{
+	const int rIndex1 = utils::RandInt(0, m_Cards.size() - 1);
+	const int rIndex2 = utils::RandInt(0, m_Cards.size() - 1);
+	Card* const c1 = m_Cards[rIndex1];
+	m_Cards[rIndex1] = m_Cards[rIndex2];
+	m_Cards[rIndex2] = c1;
 }
 void Game::ProcessKeyUpEvent(const SDL_KeyboardEvent& e)
 {
@@ -148,4 +160,8 @@ void Game::PrintLn(const std::string& str)
 void Game::Print(const int& i)
 {
 	std::cout << i << " ";
+}
+void Game::IncrementElements(const int& increment)
+{
+	for (int& i : m_Numbers) { i += increment; }
 }
