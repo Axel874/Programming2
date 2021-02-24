@@ -635,3 +635,10 @@ bool utils::IntersectRectLine(const Rectf& r, const Point2f& p1, const Point2f& 
 }
 
 #pragma endregion CollisionFunctionality
+
+#pragma region RandomFunctionality
+int utils::RandInt(int min, int max) {
+	float rangePosition = rand() / float(RAND_MAX + 1);
+	return min + int((rangePosition * (max - min + 1)));
+}
+#pragma endregion RandomFunctionality

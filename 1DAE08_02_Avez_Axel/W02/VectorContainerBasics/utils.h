@@ -72,4 +72,7 @@ namespace utils
 
 #pragma endregion CollisionFunctionality
 
+#pragma region RandomFunctionality
+	int RandInt(int min, int max);
+#pragma endregion RandomFunctionality
 }
