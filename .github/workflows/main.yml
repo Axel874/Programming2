@@ -30,6 +30,7 @@ jobs:
           echo test, and deploy your project.
           find ./1DAE08_* -type d -maxdepth 0 -exec zip -r ./{}.zip {} \;
           git config --global user.email "Axel.avez.01@gmail.com"
+          git config --global user.name "Axel874"
           git add -A
           git commit -m "export"
           git push origin master
