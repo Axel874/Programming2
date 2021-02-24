@@ -1,7 +1,4 @@
 #pragma once
-#include <vector>
-#include "Vector2f.h"
-
 namespace utils
 {
 	const float g_Pi{ 3.1415926535f };

@@ -1,9 +1,4 @@
 #include "pch.h"
-#include <cmath>
-#include <string>
-#include <iostream>
-#include <sstream>
-#include <iomanip>
 #include "Vector2f.h"
 
 //-----------------------------------------------------------------

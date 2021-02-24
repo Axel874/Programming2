@@ -1,5 +1,5 @@
 #pragma once
-
+class TrafficLight;
 class Game final
 {
 public:
@@ -11,7 +11,10 @@ public:
 	~Game();
 
 	void Update( float elapsedSec );
+	void UpdateTrafficLights(float elapsedSec);
 	void Draw( ) const;
+
+	void DrawTrafficLights() const;
 
 	// Event handling
 	void ProcessKeyDownEvent( const SDL_KeyboardEvent& e );
@@ -23,9 +26,14 @@ public:
 private:
 	// DATA MEMBERS
 	const Window m_Window;
+	std::vector<TrafficLight*> m_TrafficLights;
+	float m_Padding;
 
 	// FUNCTIONS
 	void Initialize( );
+	void GenerateTrafficLights();
+	void GenerateTrafficLightRow();
 	void Cleanup( );
+	void DeleteTrafficLights();
 	void ClearBackground( ) const;
 };
