@@ -28,5 +28,6 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          find ./1DAE08_* -type d -maxdepth 0 -exec zip -r "{}.zip" "{}"\;
+          find ./1DAE08_* -type d -maxdepth 0 -exec zip -r {}.zip {} \;
+          
           
