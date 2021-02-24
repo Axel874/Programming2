@@ -28,4 +28,4 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          find ./1DAE08_*Axel_Avez/ -type d
+          find ./1DAE08_*Avez_Axel/ -type d
