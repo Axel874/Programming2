@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Game.h"
+#include "Card.h"
 
 Game::Game(const Window& window)
 	:m_Window{ window }
@@ -13,10 +14,37 @@ Game::~Game()
 
 void Game::Initialize()
 {
+	LoadCards();
 
 }
+void Game::LoadCards()
+{
+	for (int suit = 1; suit <= 4; suit++) {
+		LoadSuit(suit);
+	}
+}
+void Game::LoadSuit(const int suit)
+{
+	for (int rank = Card::minRank; rank <= Card::maxRank; rank++) {
+		LoadCard(suit, rank);
+	}
+}
+void Game::LoadCard(const int suit, int rank)
+{
+	m_Cards.push_back(new Card(suit, rank));
+
+}
+
 void Game::Cleanup()
 {
+
+	DeleteCards();
+}
+void Game::DeleteCards()
+{
+	for (Card*& c : m_Cards) {
+		delete c;
+	}
 }
 
 void Game::Update(float elapsedSec)
@@ -26,6 +54,28 @@ void Game::Update(float elapsedSec)
 void Game::Draw() const
 {
 	ClearBackground();
+	DrawCards();
+}
+
+void Game::DrawCards() const
+{
+	for (unsigned int row = 0; row < 4; row++) {
+		DrawRow(row);
+	}
+}
+void Game::DrawRow(unsigned int row) const
+{
+	for (unsigned int column = 0; column < 13; column++) {
+		DrawCard(row, column);
+	}
+}
+void Game::DrawCard(unsigned int row, unsigned int column) const
+{
+	const Card* const& c = m_Cards[row * 13 + column];
+	const Vector2f d{ c->GetDimensions() * 0.5f };
+	const Vector2f p{ d.x / 2.0f * column, m_Window.height - (d.y * (row + 1)) };
+	const Rectf dstRect = Rectf(p.x, p.y, d.x, d.y);
+	c->Draw(dstRect);
 }
 
 void Game::ProcessKeyDownEvent(const SDL_KeyboardEvent& e)
@@ -51,7 +101,7 @@ void Game::ProcessKeyDownEvent(const SDL_KeyboardEvent& e)
 }
 void Game::IncrementElements(const int& increment)
 {
-	for (int& i : m_Numbers) { i+=increment; }
+	for (int& i : m_Numbers) { i += increment; }
 }
 void Game::ProcessKeyUpEvent(const SDL_KeyboardEvent& e)
 {
@@ -77,7 +127,7 @@ void Game::ClearBackground() const
 void Game::RemoveElement()
 {
 	const bool isNotEmpty = !m_Numbers.empty();
-	if(isNotEmpty)m_Numbers.pop_back();
+	if (isNotEmpty)m_Numbers.pop_back();
 }
 void Game::AddElement()
 {
@@ -93,7 +143,7 @@ void Game::PrintElements()
 }
 void Game::PrintLn(const std::string& str)
 {
-	std::cout << str <<  std::endl;
+	std::cout << str << std::endl;
 }
 void Game::Print(const int& i)
 {

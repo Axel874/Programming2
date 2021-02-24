@@ -1,5 +1,5 @@
 #pragma once
-
+class Card;
 class Game final
 {
 public:
@@ -12,6 +12,12 @@ public:
 
 	void Update( float elapsedSec );
 	void Draw( ) const;
+
+	void DrawCards() const;
+
+	void DrawRow(unsigned int deck) const;
+
+	void DrawCard(unsigned int deck, unsigned int rank) const;
 
 	// Event handling
 	void ProcessKeyDownEvent( const SDL_KeyboardEvent& e );
@@ -26,10 +32,16 @@ private:
 	// DATA MEMBERS
 	const Window m_Window;
 	std::vector<int> m_Numbers;
+	std::vector<Card*> m_Cards;
 
 	// FUNCTIONS
 	void Initialize( );
+	void LoadCards();
+	void LoadSuit(int suit);
+	void LoadCard(int suit, int rank);
 	void Cleanup( );
+
+	void DeleteCards();
 
 	void ClearBackground( ) const;
 	void RemoveElement();
