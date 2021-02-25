@@ -1,5 +1,5 @@
 #pragma once
-
+class TrafficLight;
 class Game final
 {
 public:
