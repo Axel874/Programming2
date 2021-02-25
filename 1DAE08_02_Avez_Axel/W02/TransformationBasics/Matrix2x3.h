@@ -37,6 +37,7 @@ struct Matrix2x3 final
 	// Transform a Polygon by this matrix, including translation	
 	// std::vector<Point2f> transformedVertices = mat.Transform(vertices);
 	std::vector<Point2f> Transform( const std::vector<Point2f>& vertices ) const;
+	std::vector<Vector2f> Transform(const std::vector<Vector2f>& vertices) const;
 
 	// Transform a Polygon by this matrix, including translation	
 	// Pass pointer to resulting array (size should be at least size of polygon)

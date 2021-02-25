@@ -15,13 +15,12 @@ Matrix2x3::Matrix2x3(float e1X, float e1Y, float e2X, float e2Y, float oX, float
 
 Vector2f Matrix2x3::Transform(const Vector2f& vector) const
 {
-	return Vector2f{ vector.x * dirX + vector.y * dirY };
+	return Vector2f{ vector.x * dirX + vector.y * dirY }+orig;
 }
 
 Point2f Matrix2x3::Transform(const Point2f& point) const
 {
-	Vector2f v{ Transform( Vector2f{ point } ) + orig };
-	return  v.ToPoint2f();
+	return (Vector2f{ point.x * dirX + point.y * dirY } + orig).ToPoint2f();
 }
 
 std::vector<Point2f> Matrix2x3::Transform(const Rectf & r) const
@@ -50,6 +49,16 @@ std::vector<Point2f> Matrix2x3::Transform( const std::vector<Point2f>& vertices 
 	for ( size_t idx{ 0 }; idx < nrVectices; ++idx )
 	{
 		transformedVertices[idx] = Transform( vertices[idx] );
+	}
+	return transformedVertices;
+}
+std::vector<Vector2f> Matrix2x3::Transform(const std::vector<Vector2f>& vertices) const
+{
+	size_t nrVectices{ vertices.size() };
+	std::vector<Vector2f> transformedVertices{ nrVectices };
+	for (size_t idx{ 0 }; idx < nrVectices; ++idx)
+	{
+		transformedVertices[idx] = Transform(vertices[idx]);
 	}
 	return transformedVertices;
 }

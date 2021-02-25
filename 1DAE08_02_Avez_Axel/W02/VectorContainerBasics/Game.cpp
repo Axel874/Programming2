@@ -109,8 +109,8 @@ void Game::ShuffelCards(const int shuffleCount)
 }
 void Game::ShuffleCard()
 {
-	const int rIndex1 = utils::RandInt(0, m_Cards.size() - 1);
-	const int rIndex2 = utils::RandInt(0, m_Cards.size() - 1);
+	const int rIndex1 = utils::RandInt(0, int(m_Cards.size()) - 1);
+	const int rIndex2 = utils::RandInt(0, int(m_Cards.size()) - 1);
 	Card* const c1 = m_Cards[rIndex1];
 	m_Cards[rIndex1] = m_Cards[rIndex2];
 	m_Cards[rIndex2] = c1;

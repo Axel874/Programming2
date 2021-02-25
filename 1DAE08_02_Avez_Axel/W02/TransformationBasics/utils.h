@@ -35,6 +35,8 @@ namespace utils
 
 	void DrawPolygon( const std::vector<Point2f>& vertices, bool closed = true, float lineWidth = 1.0f );
 	void DrawPolygon( const Point2f* pVertices, size_t nrVertices, bool closed = true, float lineWidth = 1.0f );
+	void DrawPolygon(const std::vector<Vector2f>& vertices, bool closed = true, float lineWidth = 1.0f);
+	void DrawPolygon(const Vector2f* pVertices, size_t nrVertices, bool closed = true, float lineWidth = 1.0f);
 	void FillPolygon( const std::vector<Point2f>& vertices);
 	void FillPolygon( const Point2f* pVertices, size_t nrVertices);
 #pragma endregion OpenGLDrawFunctionality
@@ -49,6 +51,7 @@ namespace utils
 	bool IsPointInRect(const Point2f& p, const Rectf& r);
 	bool IsPointInCircle(const Point2f& p, const Circlef& c);
 	bool IsPointInPolygon( const Point2f& p, const std::vector<Point2f>& vertices );
+	bool IsPointInPolygon( const Vector2f& p, const std::vector<Vector2f>& vertices);
 	bool IsPointInPolygon( const Point2f& p, const Point2f* vertices, size_t nrVertices );
 
 	bool IsOverlapping( const Point2f& a, const Point2f& b, const Circlef& c );

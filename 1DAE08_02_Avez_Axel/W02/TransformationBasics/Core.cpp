@@ -165,6 +165,8 @@ void Core::Run( )
 			case SDL_MOUSEBUTTONUP:
 				pGame->ProcessMouseUpEvent(e.button);
 				break;
+			case SDL_MOUSEWHEEL:
+				pGame->ProcessMouseWheelMotionEvent(e.wheel);
 			}
 		}
 

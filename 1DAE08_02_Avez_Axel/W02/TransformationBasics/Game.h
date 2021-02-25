@@ -1,5 +1,5 @@
 #pragma once
-class TrafficLight;
+class Texture;
 class Game final
 {
 public:
@@ -19,10 +19,19 @@ public:
 	void ProcessMouseMotionEvent( const SDL_MouseMotionEvent& e );
 	void ProcessMouseDownEvent( const SDL_MouseButtonEvent& e );
 	void ProcessMouseUpEvent( const SDL_MouseButtonEvent& e );
+	void ProcessMouseWheelMotionEvent(const SDL_MouseWheelEvent& e);
 
 private:
 	// DATA MEMBERS
 	const Window m_Window;
+	std::vector<Point2f> m_Vertices;
+	std::vector<Point2f> m_TransVertices;
+	float m_Scale = 1;
+	float m_Rotation;
+	Vector2f m_Translation;
+	const Vector2f m_Position{24,24};
+	bool m_Selected = false;
+	Texture* m_pDiamond;
 
 	// FUNCTIONS
 	void Initialize( );

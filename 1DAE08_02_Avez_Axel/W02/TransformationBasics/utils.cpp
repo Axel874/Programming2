@@ -217,6 +217,23 @@ void utils::DrawPolygon( const Point2f* pVertices, size_t nrVertices, bool close
 	glEnd( );
 }
 
+void utils::DrawPolygon(const std::vector<Vector2f>& vertices, bool closed, float lineWidth)
+{
+	DrawPolygon(vertices.data(), vertices.size(), closed, lineWidth);
+}
+void utils::DrawPolygon(const Vector2f* pVertices, size_t nrVertices, bool closed, float lineWidth)
+{
+	glLineWidth(lineWidth);
+	closed ? glBegin(GL_LINE_LOOP) : glBegin(GL_LINE_STRIP);
+	{
+		for (size_t idx{ 0 }; idx < nrVertices; ++idx)
+		{
+			glVertex2f(pVertices[idx].x, pVertices[idx].y);
+		}
+	}
+	glEnd();
+}
+
 void utils::FillPolygon( const std::vector<Point2f>& vertices )
 {
 	FillPolygon( vertices.data( ), vertices.size( ) );
@@ -364,6 +381,10 @@ bool utils::IsOverlapping( const Point2f* vertices, size_t nrVertices, const Cir
 bool utils::IsPointInPolygon( const Point2f& p, const std::vector<Point2f>& vertices )
 {
 	return IsPointInPolygon( p, vertices.data( ), vertices.size( ) );
+}
+bool utils::IsPointInPolygon(const Vector2f& p, const std::vector<Vector2f>& vertices)
+{
+	return IsPointInPolygon(p.ToPoint2f(), &vertices.data()->ToPoint2f(), vertices.size());
 }
 
 bool utils::IsPointInPolygon( const Point2f& p, const Point2f* vertices, size_t nrVertices )
