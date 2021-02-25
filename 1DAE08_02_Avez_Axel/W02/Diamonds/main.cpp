@@ -10,11 +10,11 @@ int main( int argc, char *argv[] )
 	srand(static_cast<unsigned int>(time(nullptr)));
 
 	StartHeapControl();
-
-	Core* pCore{ new Core{ Window{ "Diamonds - Avez, Axel - 1DAE08", 846.f , 500.f } } };
-	pCore->Run();
-	delete pCore;
-
+	{
+		Core* pCore{ new Core{ Window{ "Diamonds - Avez, Axel - 1DAE08", 846.f , 500.f } } };
+		pCore->Run();
+		delete pCore;
+	}
 	DumpMemoryLeaks();
 	return 0;
 }
@@ -30,7 +30,7 @@ void StartHeapControl()
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 	// Set a breakpoint on the specified object allocation order number
-	//_CrtSetBreakAlloc( 156 );
+	//_CrtSetBreakAlloc(164);
 #endif
 }
 

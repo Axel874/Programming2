@@ -1,4 +1,5 @@
 #pragma once
+class Diamond;
 class Game final
 {
 public:
@@ -18,10 +19,12 @@ public:
 	void ProcessMouseMotionEvent( const SDL_MouseMotionEvent& e );
 	void ProcessMouseDownEvent( const SDL_MouseButtonEvent& e );
 	void ProcessMouseUpEvent( const SDL_MouseButtonEvent& e );
+	void ProcessMouseWheelEvent(const SDL_MouseWheelEvent& e);
 
 private:
 	// DATA MEMBERS
 	const Window m_Window;
+	std::vector<Diamond*> m_Diamonds;
 
 	// FUNCTIONS
 	void Initialize( );
