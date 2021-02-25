@@ -1,4 +1,5 @@
 #pragma once
+class Card;
 class Game final
 {
 public:
@@ -22,6 +23,7 @@ public:
 private:
 	// DATA MEMBERS
 	const Window m_Window;
+	std::vector<Card*> m_Cards;
 
 	// FUNCTIONS
 	void Initialize( );
