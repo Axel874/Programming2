@@ -33,7 +33,6 @@ void StartHeapControl()
 	//_CrtSetBreakAlloc( 156 );
 #endif
 }
-
 void DumpMemoryLeaks()
 {
 #if defined(DEBUG) | defined(_DEBUG)

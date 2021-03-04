@@ -12,6 +12,10 @@ public:
 	void Update( float elapsedSec );
 	void Draw( ) const;
 
+	void DrawRay() const;
+
+	void DrawSurface() const;
+
 	// Event handling
 	void ProcessKeyDownEvent( const SDL_KeyboardEvent& e );
 	void ProcessKeyUpEvent( const SDL_KeyboardEvent& e );
@@ -22,9 +26,13 @@ public:
 private:
 	// DATA MEMBERS
 	const Window m_Window;
+	std::vector<Point2f> m_Surface;
+	const Point2f m_RayStart{m_Window.width/2.0f, m_Window.height/2.0f};
+	Point2f m_RayEnd;
 
 	// FUNCTIONS
 	void Initialize( );
+	void InitSurface();
 	void Cleanup( );
 	void ClearBackground( ) const;
 };
