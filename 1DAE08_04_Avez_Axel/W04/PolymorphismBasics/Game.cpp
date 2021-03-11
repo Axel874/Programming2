@@ -11,38 +11,25 @@ Game::Game()
 }
 Game::~Game()
 {
-	for (Enemy* ptr : m_pEnemies)
-	{
-		delete ptr;
-	}
-	m_pEnemies.clear();
-
-	for (PickUp* ptr : m_pPickUps)
-	{
-		delete ptr;
-	}
-	m_pPickUps.clear();
-
-	for (Weapon* ptr : m_pWeapons)
-	{
-		delete ptr;
+	for (GameObject* g : m_pObjects) {
+		delete g;
 	}
 	m_pWeapons.clear();
 }
 
 void Game::AddEnemy()
 {
-	m_pEnemies.push_back(new Enemy());
+	m_pObjects.push_back(new Enemy());
 }
 
 void Game::AddPickUp()
 {
-	m_pPickUps.push_back(new PickUp());
+	m_pObjects.push_back(new PickUp());
 }
 
 void Game::AddWeapon()
 {
-	m_pWeapons.push_back(new Weapon());
+	m_pObjects.push_back(new Weapon());
 }
 
 void Game::ReportAll() const
@@ -50,17 +37,7 @@ void Game::ReportAll() const
 	int seqNr{ 0 };
 
 	std::cout << "--> All Game objects\n";
-	for (Enemy* ptr : m_pEnemies)
-	{
-		++seqNr;
-		std::cout << seqNr << ": " << ptr->ToString() << "\n";
-	}
-	for (PickUp* ptr : m_pPickUps)
-	{
-		++seqNr;
-		std::cout << seqNr << ": " << ptr->ToString() << "\n";
-	}
-	for (Weapon* ptr : m_pWeapons)
+	for (GameObject* ptr : m_pObjects)
 	{
 		++seqNr;
 		std::cout << seqNr << ": " << ptr->ToString() << "\n";
@@ -69,9 +46,20 @@ void Game::ReportAll() const
 
 void Game::ReportEnemies() const
 {
-	std::cout << "--> Enemies\n";
-	for (Enemy* ptr : m_pEnemies)
+	const size_t  enemyType = typeid(Enemy).hash_code();
+
+	std::cout << "--> Enemies (typeid comparison)\n";
+	for (GameObject* ptr : m_pObjects)
 	{
-		std::cout  << ptr->ToString() << "\n";
+		const size_t ptrType = typeid(*ptr).hash_code();
+		const bool isEnemy = ptrType == enemyType;
+		if(isEnemy){ std::cout << ptr->ToString() << "\n"; }
+	}
+	//compare speeds ?
+	std::cout << "--> Enemies (dynamic_cast)\n";
+	for (GameObject* ptr : m_pObjects)
+	{
+		const bool isEnemy = dynamic_cast<Enemy*>(ptr) != nullptr;
+		if (isEnemy) { std::cout << ptr->ToString() << "\n"; }
 	}
 }

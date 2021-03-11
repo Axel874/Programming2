@@ -8,5 +8,5 @@
 #define PCH_H
 
 // add headers that you want to pre-compile here
-
+#include <string>
 #endif //PCH_H

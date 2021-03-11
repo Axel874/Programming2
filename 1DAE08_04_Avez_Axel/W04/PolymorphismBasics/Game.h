@@ -3,6 +3,7 @@
 class Weapon;
 class Enemy;
 class PickUp;
+class GameObject;
 
 class Game final
 {
@@ -24,4 +25,5 @@ private:
 	std::vector< Weapon* > m_pWeapons;
 	std::vector< Enemy* > m_pEnemies;
 	std::vector< PickUp* > m_pPickUps;
+	std::vector< GameObject* > m_pObjects;
 };
