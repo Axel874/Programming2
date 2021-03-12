@@ -9,6 +9,8 @@ public:
 	void DrawForeground()const;
 	void HandleCollision(Rectf& actorShape, Vector2f& actorVelocity) const;
 	bool IsOnGround(const Rectf& actorShape)const;
+	Rectf GetBounds() const;
+
 private:
 	std::vector<Point2f> m_Vertices;
 	Texture* m_pBackgroundTexture;

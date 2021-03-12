@@ -18,6 +18,9 @@ void Game::Initialize( )
 {
 	ShowTestMessage( );
 	AddPowerUps( );
+
+	m_Camera = Camera(m_Window.width, m_Window.height);
+	m_Camera.SetLevelBounds(m_Level.GetBounds());
 }
 
 void Game::Cleanup( )
@@ -37,11 +40,13 @@ void Game::Update( float elapsedSec )
 void Game::Draw( ) const
 {
 	ClearBackground( );
-
-	m_Level.DrawBackground( );
-	m_PowerUpManager.Draw( );
-	m_Avatar.Draw( );
-	m_Level.DrawForeground( );
+	glPushMatrix();
+		m_Camera.Transform(Vector2f(m_Avatar.GetShape().left, m_Avatar.GetShape().bottom));
+		m_Level.DrawBackground( );
+		m_PowerUpManager.Draw( );
+		m_Avatar.Draw( );
+		m_Level.DrawForeground( );
+	glPopMatrix();
 }
 
 void Game::ProcessKeyDownEvent( const SDL_KeyboardEvent & e )
