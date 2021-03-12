@@ -24,7 +24,6 @@ void Avatar::Update(float dx, const Level& l){
 		}
 	}
 	else {
-		if (l.IsOnGround(GetShape())) {
 			const Uint8* s = SDL_GetKeyboardState(NULL);
 			bool recievedInput = false;
 			if (s[SDL_SCANCODE_RIGHT]) {
@@ -35,17 +34,14 @@ void Avatar::Update(float dx, const Level& l){
 				m_Position.x -= dx * horSpeed;
 				recievedInput = true;
 			}
-			if (s[SDL_SCANCODE_UP] || s[SDL_SCANCODE_SPACE]) {
+			if ((s[SDL_SCANCODE_UP] || s[SDL_SCANCODE_SPACE]) && l.IsOnGround(GetShape())) {
 				m_Velocity.y = jumpSpeed;
 				m_Position.y += 5;
 				recievedInput = true;
 			}
-			if (recievedInput){UpdatePosition(dx, l);}
-			else { m_ActionState = ActionState::WAITING; }
-		}
-		else {
+			if (!recievedInput){ m_ActionState = ActionState::WAITING;}
+
 			UpdatePosition(dx, l);
-		}
 
 	}
 }
