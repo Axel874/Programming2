@@ -1,0 +1,9 @@
+name:landing
+filesource:landing.png
+nrFrames:7
+framesPerSecond:7
+frameSizeX:0.142857
+frameSizeY:1
+framePadding:0
+startOffsetX:0
+startOffsetY:0

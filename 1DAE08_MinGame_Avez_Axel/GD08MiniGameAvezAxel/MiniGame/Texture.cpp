@@ -294,10 +294,10 @@ void Texture::Draw( const Rectf& dstRect, const Rectf& srcRect ) const
 		vertexTop = vertexBottom + dstRect.height;
 
 	}
-
+	glColor4f(1.0f, 1.0f, 1.0f, 0.5);
 	// Tell opengl which texture we will use
 	glBindTexture( GL_TEXTURE_2D, m_Id );
-	glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
+	glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
 
 	// Draw
 	glEnable( GL_TEXTURE_2D );

@@ -1,0 +1,11 @@
+Debug/
+x86/
+x64/
+.vs/
+*.sln*
+*.vcxproj*
+*.props
+skul asset export/
+Aseprite.v1.2.21/
+Specification.pdf
+GradingRubric.pdf
