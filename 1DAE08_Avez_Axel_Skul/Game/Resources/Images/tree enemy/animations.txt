@@ -1,0 +1,9 @@
+name:idle
+filesource:idle.png
+nrFrames:4
+framesPerSecond:6
+frameSizeX:0.25
+frameSizeY:1
+framePadding:0
+startOffsetX:0
+startOffsetY:0

@@ -1,8 +1,7 @@
 #include "pch.h"
 #include "Player.h"
 
-char Player::s_TextureSource[64] = "./resources/images/skul/landing.png";
-char Player::s_AnimationsSource[64] = "./resources/images/skul/landing.txt";
+char Player::s_AnimationsSource[64] = "./resources/images/skul/animations.txt";
 glm::vec2 Player::s_Dimensions = glm::vec2(50, 50);
 float Player::s_JumpForce = 400.0f;
 float Player::s_Speed = 200.0f;
@@ -10,7 +9,7 @@ unsigned int Player::s_MaxJumps = 2;
 
 //public
 Player::Player(const glm::vec3& position)
-	: Sprite(s_TextureSource, s_AnimationsSource, true, true, false, true, position, s_Dimensions), m_CurrentFrame(1), m_TimeSinceFrameChange(0),
+	: Sprite("", s_AnimationsSource, true, true, false, true, position, s_Dimensions), m_CurrentFrame(1), m_TimeSinceFrameChange(0),
 	m_CurrentDirection(Direction::RIGHT), m_JumpCount(0), m_MaxJumps(s_MaxJumps) {}
 Player::~Player() {}
 

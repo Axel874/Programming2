@@ -8,7 +8,7 @@ public:
 	~SpriteRenderer();
 
 	void SetManagedSprites(std::vector<Sprite*>& sprites);
-	void RenderSprites(const glm::mat4& viewMatrix, const glm::mat4& projectionMatrix, SDL_Window* window );
+	void RenderSprites(const glm::mat4& viewMatrix, const glm::mat4& projectionMatrix, SDL_Window* window, const glm::vec3& camPos);
 	void RenderCleanup();
 	void RenderSetup(const glm::mat4& viewMatrix, const glm::mat4& projectionMatrix);
 private:
@@ -21,7 +21,7 @@ private:
 	
 	Texture* GetTexture(const std::string& src);
 	Texture* LoadTexture(const std::string& src);
-	void DrawSprites();
-	void DrawSprite(Sprite* s);
+	void DrawSprites(const glm::mat4& viewMatrix, const glm::vec3& camPos);
+	void DrawSprite(Sprite* s, const glm::mat4& viewMatrix, const glm::vec3& camPos);
 	void GenerateVAO();
 };

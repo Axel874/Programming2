@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "SpriteRenderer.h"
 #include "Sprite.h"
+#include "Camera.h"
 
 SpriteRenderer::SpriteRenderer(std::vector<Sprite*>& managedSprites)
 	: m_rSprites(managedSprites), m_Shader(ProgramShader("./resources/shaders/base"))
@@ -36,13 +37,14 @@ SpriteRenderer::~SpriteRenderer() {
 }
 
 void SpriteRenderer::SetManagedSprites(std::vector<Sprite*>& sprites) { m_rSprites = sprites; }
-void SpriteRenderer::RenderSprites(const glm::mat4& viewMatrix, const glm::mat4& projectionMatrix, SDL_Window* window) {
+void SpriteRenderer::RenderSprites(const glm::mat4& viewMatrix, const glm::mat4& projectionMatrix, SDL_Window* window, const glm::vec3& camPos) {
 	RenderSetup(viewMatrix, projectionMatrix);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	DrawSprites();
-	SDL_GL_SwapWindow(window);
 
+	DrawSprites(viewMatrix, camPos);
+	SDL_GL_SwapWindow(window);
+	 
 	RenderCleanup();
 }
 void SpriteRenderer::RenderCleanup()
@@ -54,23 +56,22 @@ void SpriteRenderer::RenderCleanup()
 }
 void SpriteRenderer::RenderSetup(const glm::mat4& viewMatrix,const glm::mat4& projectionMatrix)
 {
-	//send shader our view and projection matrix
-	m_Shader.setMatrix4fv("view", viewMatrix);
+	//send shader our projection matrix
 	m_Shader.setMatrix4fv("projection", projectionMatrix);
 	//set our shader as the currently used shader by opengl
 	m_Shader.Bind();
 	//bind our "sprite data VAO"
 	glBindVertexArray(m_VAOHandle);
 }
-void SpriteRenderer::DrawSprites()
+void SpriteRenderer::DrawSprites(const glm::mat4& viewMatrix, const glm::vec3& camPos)
 {
 	//sort based on z index for proper alpha blending during render calls
 	std::sort(m_rSprites.begin(), m_rSprites.end(), [](Sprite* a, Sprite* b) {return a->GetPosition().z < b->GetPosition().z; });
 	for (Sprite* s : m_rSprites) {
-		if (s->GetVisible()) { DrawSprite(s); }
+		if (s->GetVisible()) { DrawSprite(s, viewMatrix, camPos); }
 	}
 }
-void SpriteRenderer::DrawSprite(Sprite* s)
+void SpriteRenderer::DrawSprite(Sprite* s, const glm::mat4& viewMatrix, const glm::vec3& camPos)
 {
 	//get a pointer to the sprite's texture
 	Texture* texture = GetTexture(s->GetTextureInfo().src);
@@ -78,6 +79,7 @@ void SpriteRenderer::DrawSprite(Sprite* s)
 	texture->Bind(GL_TEXTURE0);
 	//pass sprite model matrix to shader
 	m_Shader.setMatrix4fv("model", s->GetModelMatrix());
+	m_Shader.setMatrix4fv("view", glm::translate(viewMatrix,glm::vec3(camPos.x*s->GetParallaxFactor(),0.0f,0.0f)));
 	//edit VBO based on UV coordinates supplied by sprite
 	glBufferSubData(GL_ARRAY_BUFFER,0, sizeof(float) * 24, s->GetVBOData());
 	//draw our sprite

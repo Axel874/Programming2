@@ -45,6 +45,7 @@ void Core::RunGameLoop()
 			t1 = t2;
 			//update game
 			pGame->Update(deltaTime);
+			std::cout << 1.0f / deltaTime << std::endl;
 			pGame->GetActiveCamera()->Update(deltaTime);
 			//run physics (fires hit events inside sprites)
 			physicsEngine.UpdateSprites(deltaTime);
@@ -53,7 +54,7 @@ void Core::RunGameLoop()
 			//update animations
 			animator.UpdateAnimations(deltaTime);
 			//render sprites
-			renderer.RenderSprites(pGame->GetActiveCamera()->GetViewMatrix(), pGame->GetActiveCamera()->GetProjectionMatrix(), m_pSDLWindow);
+			renderer.RenderSprites(pGame->GetActiveCamera()->GetViewMatrix(), pGame->GetActiveCamera()->GetProjectionMatrix(), m_pSDLWindow, pGame->GetActiveCamera()->GetPosition());
 		}
 	}
 	delete pGame;

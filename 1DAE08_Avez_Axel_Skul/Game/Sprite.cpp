@@ -25,10 +25,10 @@ Sprite::Sprite(
 	const std::string& srcPath, const std::string& animationsSrcPath,
 	bool generatesOverlapEvents, bool simulatePhysics, bool blockOtherSprites,
 	bool isVisible, const glm::vec3& position, const glm::vec2& scale,
-	const glm::vec3& rot)
+	float parallaxFactor,const glm::vec3& rot)
 	: m_Size(scale), m_TextureInfo(TextureInfo(srcPath)), m_Position(position),
 	m_Rotation(rot), m_GeneratesOverlapevent(generatesOverlapEvents), m_Visible(isVisible),
-	m_SimulatePhysics(simulatePhysics), m_BlockOtherSprites(blockOtherSprites)
+	m_SimulatePhysics(simulatePhysics), m_BlockOtherSprites(blockOtherSprites), m_ParallaxFactor(parallaxFactor)
 {
 	m_TimeSinceFrameChange = 0;
 	m_CurrentFrame = 0;
@@ -40,8 +40,8 @@ Sprite::Sprite(
 	UpdateVBO(); //update vbo data to match texture uv info
 	if (!animationsSrcPath.empty()) {
 		LoadAnimations(animationsSrcPath); //load animations' data into m_animations
+		m_AnimationsSourcePath = animationsSrcPath.substr(0, animationsSrcPath.find_last_of("\/")) + "/";
 		SetCurrentAnimation(m_Animations[0].name);
-		SetTextureSource(animationsSrcPath.substr(0, animationsSrcPath.find_last_of("\/"))+"/" + m_Animations[0].fileName);
 		m_IsAnimated = true;
 	}
 	else { m_IsAnimated = false; }
@@ -87,6 +87,7 @@ void Sprite::SetCurrentAnimation(const std::string& name) {
 			SetTextureDimenions(a.frameDimensions);
 			m_TimeSinceFrameChange = 1.0f / a.framesPerSecond;
 			m_CurrentFrame = 0;
+			SetTextureSource( m_AnimationsSourcePath + m_Animations[0].fileName);
 			return;
 		}
 	}
@@ -139,6 +140,7 @@ glm::vec3 Sprite::GetGravity() const { return m_Gravity; }
 glm::vec3 Sprite::GetVelocity() const { return m_Velocity; }
 glm::vec3 Sprite::GetAcceleration()  const { return m_Acceleration; }
 float Sprite::GetTimeSinceFrameChange() const { return m_TimeSinceFrameChange; }
+float Sprite::GetParallaxFactor() const { return m_ParallaxFactor; }
 int Sprite::GetCurrentFrame() const { return m_CurrentFrame; }
 
 

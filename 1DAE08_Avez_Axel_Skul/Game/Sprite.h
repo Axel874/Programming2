@@ -26,7 +26,7 @@ public:
 		const std::string& textureSrcPath, const std::string& animationsSrcPath,
 		bool generatesOverlapEvents, bool simulatePhysics, bool blockOtherSprites,
 		bool isVisible,const glm::vec3& position, const glm::vec2& scale,
-		const glm::vec3& rot = glm::vec3(0));
+		float parallaxFactor = 0.0f, const glm::vec3& rot = glm::vec3(0));
 	virtual ~Sprite();
 
 	virtual void Update(float deltaSeconds);
@@ -63,6 +63,7 @@ public:
 	glm::vec3 GetAcceleration() const;
 	Animation* GetCurrentAnimation() const;
 	float GetTimeSinceFrameChange() const;
+	float GetParallaxFactor() const;
 	int GetCurrentFrame() const;
 
 	void SetPosition(const glm::vec3& newPosition);
@@ -94,13 +95,14 @@ private:
 	float m_TimeSinceFrameChange;
 	int m_CurrentFrame;
 	Animation* m_CurrentAnimation;
+	std::string m_AnimationsSourcePath;
 
 	float* m_pVBOData;
 	bool m_GeneratesOverlapevent;
 	bool m_BlockOtherSprites;
 	bool m_Visible;
 	bool m_IsFlipped;
-
+	float m_ParallaxFactor; //0 = remains still; 1 = moves with camera
 	void UpdateVBO();
 	std::string FindAnimationData(const std::vector<DataEntry>& dataEntries, const std::string& dataId);
 	void LoadAnimations(const std::string& path);

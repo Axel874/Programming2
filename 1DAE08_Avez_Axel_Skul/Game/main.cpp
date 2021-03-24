@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 	{//scope for mem check
 		const Window w{
 			"TabulaGame",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			1080,512, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE,true,60
+			1080,512, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE,true,600
 		};
 
 		Core core = Core(w, true);
