@@ -9,7 +9,7 @@ unsigned int Player::s_MaxJumps = 2;
 
 //public
 Player::Player(const glm::vec3& position)
-	: Sprite("", s_AnimationsSource, true, true, false, true, position, s_Dimensions), m_CurrentFrame(1), m_TimeSinceFrameChange(0),
+	: Sprite("", s_AnimationsSource, true, true, false, true, position, s_Dimensions),
 	m_CurrentDirection(Direction::RIGHT), m_JumpCount(0), m_MaxJumps(s_MaxJumps) {}
 Player::~Player() {}
 
@@ -47,15 +47,11 @@ void Player::HandleKeyStates(float dt) {
 	if (s[SDL_SCANCODE_D]) { MoveX(s_Speed * dt); SetDirection(Direction::RIGHT); isMoving = true; }
 	if (s[SDL_SCANCODE_A]) { MoveX(-s_Speed * dt); SetDirection(Direction::LEFT); isMoving = true; }
 	if (isMoving) {
-		if (GetCurrentAnimation()->name != "running") {
 			SetCurrentAnimation("running");
 
-		}
 	}
 	else {
-		if (GetCurrentAnimation()->name != "idle") {
 			SetCurrentAnimation("idle");
-		}
 	}
 
 }

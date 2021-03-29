@@ -81,17 +81,20 @@ void Sprite::SetVelocity(const glm::vec3& newVelocity) { m_Velocity = newVelocit
 void Sprite::SetTimeSinceFrameChange(float newTime) { m_TimeSinceFrameChange = newTime; }
 void Sprite::SetCurrentFrame(int newFrame) { m_CurrentFrame = newFrame; }
 void Sprite::SetCurrentAnimation(const std::string& name) {
-	for (Animation& a : m_Animations) {
-		if (a.name == name) {
-			m_CurrentAnimation = &a;
-			SetTextureDimenions(a.frameDimensions);
-			m_TimeSinceFrameChange = 1.0f / a.framesPerSecond;
-			m_CurrentFrame = 0;
-			SetTextureSource( m_AnimationsSourcePath + m_Animations[0].fileName);
-			return;
+	if (GetCurrentAnimation() == nullptr || GetCurrentAnimation()->name != name) {
+		for (Animation& a : m_Animations) {
+			if (a.name == name) {
+				m_CurrentAnimation = &a;
+				SetTextureDimenions(a.frameDimensions);
+				m_TimeSinceFrameChange = 1.0f / a.framesPerSecond;
+				m_CurrentFrame = 0;
+				SetTextureSource(m_AnimationsSourcePath + m_Animations[0].fileName);
+				return;
+			}
 		}
+		std::cout << "can't find animation '" << name << "'" << std::endl;
 	}
-	std::cout << "can't find animation '" << name << "'" << std::endl;
+	return;
 }
 
 

@@ -23,8 +23,6 @@ private:
 	static float s_Speed;
 	static unsigned int s_MaxJumps;
 
-	float m_TimeSinceFrameChange;
-	int m_CurrentFrame;
 	Direction m_CurrentDirection;
 	
 	unsigned int m_JumpCount;
