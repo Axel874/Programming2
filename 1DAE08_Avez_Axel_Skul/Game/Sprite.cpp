@@ -25,7 +25,7 @@ Sprite::Sprite(
 	const std::string& srcPath, const std::string& animationsSrcPath,
 	bool generatesOverlapEvents, bool simulatePhysics, bool blockOtherSprites,
 	bool isVisible, const glm::vec3& position, const glm::vec2& scale,
-	float parallaxFactor,const glm::vec3& rot)
+	glm::vec2 parallaxFactor,const glm::vec3& rot)
 	: m_Size(scale), m_TextureInfo(TextureInfo(srcPath)), m_Position(position),
 	m_Rotation(rot), m_GeneratesOverlapevent(generatesOverlapEvents), m_Visible(isVisible),
 	m_SimulatePhysics(simulatePhysics), m_BlockOtherSprites(blockOtherSprites), m_ParallaxFactor(parallaxFactor)
@@ -140,7 +140,7 @@ glm::vec3 Sprite::GetGravity() const { return m_Gravity; }
 glm::vec3 Sprite::GetVelocity() const { return m_Velocity; }
 glm::vec3 Sprite::GetAcceleration()  const { return m_Acceleration; }
 float Sprite::GetTimeSinceFrameChange() const { return m_TimeSinceFrameChange; }
-float Sprite::GetParallaxFactor() const { return m_ParallaxFactor; }
+glm::vec2 Sprite::GetParallaxFactor() const { return m_ParallaxFactor; }
 int Sprite::GetCurrentFrame() const { return m_CurrentFrame; }
 
 

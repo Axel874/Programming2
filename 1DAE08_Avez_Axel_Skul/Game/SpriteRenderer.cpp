@@ -79,7 +79,11 @@ void SpriteRenderer::DrawSprite(Sprite* s, const glm::mat4& viewMatrix, const gl
 	texture->Bind(GL_TEXTURE0);
 	//pass sprite model matrix to shader
 	m_Shader.setMatrix4fv("model", s->GetModelMatrix());
-	m_Shader.setMatrix4fv("view", glm::translate(viewMatrix,glm::vec3(camPos.x*s->GetParallaxFactor(),0.0f,0.0f)));
+	//adjust view matrix according to parralax factors
+	glm::mat4 newViewMatrix = glm::translate(viewMatrix, glm::vec3(camPos.x * s->GetParallaxFactor().x, 0.0f, 0.0f));
+	newViewMatrix = glm::translate(newViewMatrix, glm::vec3(0.0f, camPos.y * s->GetParallaxFactor().y, 0.0f));
+	//pass adjusted view matrix to shader
+	m_Shader.setMatrix4fv("view", newViewMatrix);
 	//edit VBO based on UV coordinates supplied by sprite
 	glBufferSubData(GL_ARRAY_BUFFER,0, sizeof(float) * 24, s->GetVBOData());
 	//draw our sprite

@@ -9,8 +9,8 @@ Game::Game() : m_Quitflag(false) {
 	std::string src = "./resources/images/";
 
 	//background sprite
-	m_pSprites.push_back(new Sprite(src + "background/background.png", "", false, false, false, true, glm::vec3(0, -20, -3), glm::vec2(500,280),1.0f));
-	m_pSprites.push_back(new Sprite(src + "background/background2.png", "", false, false, false, true, glm::vec3(0, -20, -2), glm::vec2(500, 140),1.0f));
+	m_pSprites.push_back(new Sprite(src + "background/background.png", "", false, false, false, true, glm::vec3(0, 0, -3), glm::vec2(500,280),glm::vec2(1.0f)));
+	m_pSprites.push_back(new Sprite(src + "background/background2.png", "", false, false, false, true, glm::vec3(0, 0, -2), glm::vec2(500, 140), glm::vec2(1.0f)));
 
 	//floor hitbox + sprites
 	m_pSprites.push_back(new Sprite("", "", false, false, true, false, glm::vec3(0, -20, 0), glm::vec2(32*30, 32)));
