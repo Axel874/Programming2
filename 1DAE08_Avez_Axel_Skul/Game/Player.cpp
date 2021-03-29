@@ -10,7 +10,7 @@ unsigned int Player::s_MaxJumps = 2;
 //public
 Player::Player(const glm::vec3& position)
 	: Sprite("", s_AnimationsSource, true, true, false, true, position, s_Dimensions),
-	m_CurrentDirection(Direction::RIGHT), m_JumpCount(0), m_MaxJumps(s_MaxJumps) {}
+	m_CurrentDirection(Direction::RIGHT), m_JumpCount(0), m_MaxJumps(s_MaxJumps), m_PreviousPosition(position) {}
 Player::~Player() {}
 
 void Player::OnKeyDown(const SDL_KeyboardEvent& e) {
@@ -38,21 +38,22 @@ void Player::OnHit(Sprite* const other, const HitDirection& direction) {
 
 void Player::Update(float dt) {
 	HandleKeyStates(dt);
+	//determine animation based comparing prev position to new position
+	if (m_Position.x > m_PreviousPosition.x) { SetDirection(Direction::RIGHT); }
+	else if (m_Position.x < m_PreviousPosition.x) { SetDirection(Direction::LEFT); }
+
+	if (m_Position.x != m_PreviousPosition.x) { SetCurrentAnimation("running"); }
+	else { SetCurrentAnimation("idle"); }
+	//set prev psoition to new position
+	m_PreviousPosition = m_Position;
 }
 
 //private
 void Player::HandleKeyStates(float dt) {
 	const Uint8* s = SDL_GetKeyboardState(NULL);
 	bool isMoving = false;
-	if (s[SDL_SCANCODE_D]) { MoveX(s_Speed * dt); SetDirection(Direction::RIGHT); isMoving = true; }
-	if (s[SDL_SCANCODE_A]) { MoveX(-s_Speed * dt); SetDirection(Direction::LEFT); isMoving = true; }
-	if (isMoving) {
-			SetCurrentAnimation("running");
-
-	}
-	else {
-			SetCurrentAnimation("idle");
-	}
+	if (s[SDL_SCANCODE_D]) { MoveX(s_Speed * dt);}
+	if (s[SDL_SCANCODE_A]) { MoveX(-s_Speed * dt);}
 
 }
 void Player::MoveX(float dx) {

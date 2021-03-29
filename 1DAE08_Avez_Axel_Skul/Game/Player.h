@@ -24,6 +24,7 @@ private:
 	static unsigned int s_MaxJumps;
 
 	Direction m_CurrentDirection;
+	glm::vec3 m_PreviousPosition;
 	
 	unsigned int m_JumpCount;
 	unsigned int m_MaxJumps;
